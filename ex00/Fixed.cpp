@@ -1,17 +1,13 @@
 #include "Fixed.hpp"
+#include <ostream>
+#include <iostream>
 
 Fixed::Fixed(): rawBits(0)
 {
 	std::cout <<"Default constructor called" <<std::endl;
 };
 
-Fixed::Fixed(const Fixed& src)
-{
-	std::cout <<"Copy constructor called" <<std::endl;
-	if(this != &src)
-		rawBits = src.getRawBits();
 
-}
 
 Fixed& Fixed::Fixed::operator=(const Fixed& src)
 {
@@ -20,6 +16,15 @@ Fixed& Fixed::Fixed::operator=(const Fixed& src)
 		rawBits = src.getRawBits();
 	return *this;
 }
+
+Fixed::Fixed(const Fixed& src)
+{
+	std::cout <<"Copy constructor called" <<std::endl;
+	if(this != &src)
+		*this = src;
+
+}
+
 //////////////////////////////////////////////////////////////
 Fixed::~Fixed()
 {
