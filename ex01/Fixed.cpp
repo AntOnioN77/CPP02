@@ -5,9 +5,19 @@
 Fixed::Fixed(): rawBits(0)
 {
 	std::cout <<"Default constructor called" <<std::endl;
-};
+}
 
+Fixed::Fixed(const int raw) : rawBits(raw)
+{
+	std::cout <<"Int constructor called" <<std::endl;
+}
 
+Fixed::Fixed(const float  num)
+{
+	std::cout <<"Float constructor called" <<std::endl;
+
+	
+}
 
 Fixed& Fixed::Fixed::operator=(const Fixed& src)
 {
