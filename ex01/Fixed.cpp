@@ -12,7 +12,7 @@ Fixed::Fixed(const int raw) : rawBits(raw)
 	std::cout <<"Int constructor called" <<std::endl;
 }
 
-Fixed::Fixed(const float  num)
+Fixed::Fixed(const float num)
 {
 	std::cout <<"Float constructor called" <<std::endl;
 

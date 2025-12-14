@@ -1,4 +1,4 @@
-CC = g++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98  -pedantic
 NAME = My_First_Class_in_Orthodox_Canonical_Form
 SOURCES = Fixed.cpp main.cpp
@@ -9,6 +9,8 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 debug: CFLAGS += -g3
 debug: clean all
