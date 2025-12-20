@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98  -pedantic
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = Towards
 SOURCES = Fixed.cpp main.cpp
 HEADERS = Fixed.hpp Fixed.h
