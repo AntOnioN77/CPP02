@@ -18,7 +18,6 @@ class Fixed
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 	int get_point();
-	friend Fixed int_to_fixed(int n);
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& n);

@@ -36,8 +36,7 @@ Fixed& Fixed::Fixed::operator=(const Fixed& src)
 Fixed::Fixed(const Fixed& src)
 {
 	std::cout <<"Copy constructor called" <<std::endl;
-	if(this != &src)
-		*this = src;
+	*this = src;
 }
 
 Fixed::~Fixed()
