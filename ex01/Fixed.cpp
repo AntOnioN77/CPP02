@@ -25,7 +25,7 @@ Fixed::Fixed(const float num)
 	rawBits = roundf(num * (1 << fixed_point));
 }
 
-Fixed& Fixed::Fixed::operator=(const Fixed& src)
+Fixed& Fixed::operator=(const Fixed& src)
 {
 	std::cout <<"Copy assignment operator called" <<std::endl;
 	if(this != &src)
@@ -36,7 +36,8 @@ Fixed& Fixed::Fixed::operator=(const Fixed& src)
 Fixed::Fixed(const Fixed& src)
 {
 	std::cout <<"Copy constructor called" <<std::endl;
-	*this = src;
+	*this = src;	//Para imprimir como en el subject, pero mas eficiente y seguro:
+					//rawBits = src.rawBits;
 }
 
 Fixed::~Fixed()
@@ -52,7 +53,6 @@ Fixed::~Fixed()
 
 void Fixed::setRawBits( int const raw )
 {
-	std::cout <<"Copy assignment operator called" <<std::endl;
 	rawBits = raw;
 }
 
