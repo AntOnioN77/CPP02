@@ -74,89 +74,89 @@ std::ostream& operator<<(std::ostream& os, const Fixed& n)
 }
 
 //Aritmetic Operators:
-Fixed operator+(const Fixed& a, const Fixed& b)
+Fixed Fixed::operator+(const Fixed& b)
 {
 	Fixed sum;
-	sum.setRawBits(a.getRawBits() + b.getRawBits());
+	sum.setRawBits(rawBits + b.getRawBits());
 	return sum;
 }
 
-Fixed operator-(const Fixed& a, const Fixed& b)
+Fixed Fixed::operator-(const Fixed& b)
 {
 	Fixed mult;
-	mult.setRawBits(a.getRawBits() - b.getRawBits());
+	mult.setRawBits(rawBits - b.getRawBits());
 	return mult;
 }
 
-Fixed operator*(const Fixed& a, const Fixed& b)
+Fixed Fixed::operator*(const Fixed& b)
 {
 	Fixed mult;
 
-	mult.setRawBits(((long long)a.getRawBits() * b.getRawBits()) >> Fixed::fixed_point);
+	mult.setRawBits(((long)rawBits * b.getRawBits()) >> Fixed::fixed_point);
 	return mult;
 }
 
-Fixed operator/(const Fixed& a, const Fixed& b)
+Fixed Fixed::operator/(const Fixed& b)
 {
 	Fixed div;
 
-	div.setRawBits(((long long)a.getRawBits() << Fixed::fixed_point) / b.getRawBits());
+	div.setRawBits(((long)rawBits << Fixed::fixed_point) / b.getRawBits());
 	return div;
 }
 
 //Comparison operators
-bool operator<(const Fixed& a, const Fixed& b)
+bool Fixed::operator<(const Fixed& a, const Fixed& b)
 {
 	return a.getRawBits() < b.getRawBits();
 }
 
-bool operator<=(const Fixed& a, const Fixed& b)
+bool Fixed::operator<=(const Fixed& a, const Fixed& b)
 {
 	return a.getRawBits() <= b.getRawBits();
 }
 
-bool operator>(const Fixed& a, const Fixed& b)
+bool Fixed::operator>(const Fixed& a, const Fixed& b)
 {
 	return a.getRawBits() > b.getRawBits();
 }
 
-bool operator>=(const Fixed& a, const Fixed& b)
+bool Fixed::operator>=(const Fixed& a, const Fixed& b)
 {
 	return a.getRawBits() >= b.getRawBits();
 }
 
-bool operator==(const Fixed& a, const Fixed& b)
+bool Fixed::operator==(const Fixed& a, const Fixed& b)
 {
 	return (a.getRawBits() == b.getRawBits());
 }
 
-bool operator!=(const Fixed& a, const Fixed& b)
+bool Fixed::operator!=(const Fixed& a, const Fixed& b)
 {
 	return a.getRawBits() != b.getRawBits();
 }
 
 //increment operatotors
-Fixed operator++(Fixed& fixed, int) //post-increment
+Fixed Fixed::operator++(Fixed& fixed, int) //post-increment
 {
     Fixed tmp(fixed);
 	fixed.rawBits++;
 	return tmp;
 }
 
-Fixed& operator++(Fixed& fixed) //pre-increment
+Fixed& Fixed::operator++(Fixed& fixed) //pre-increment
 {
 	fixed.rawBits++;
 	return fixed;
 }
 
-Fixed operator--(Fixed& fixed, int) //post-decrement
+Fixed Fixed::operator--(Fixed& fixed, int) //post-decrement
 {
 	Fixed tmp(fixed);
 	fixed.rawBits--;
 	return tmp;
 }
 
-Fixed& operator--(Fixed& fixed) //pre-decrement
+Fixed& Fixed::operator--(Fixed& fixed) //pre-decrement
 {
 	fixed.rawBits--;
 	return fixed;
