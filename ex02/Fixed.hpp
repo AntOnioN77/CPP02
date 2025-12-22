@@ -22,23 +22,28 @@ class Fixed
 	void setRawBits( int const raw );
 	int get_point();
 
-	Fixed operator*(const Fixed& b);
-	Fixed operator/(const Fixed& b);
+	Fixed operator*(const Fixed& b) const;
+	Fixed operator/(const Fixed& b) const;
+	Fixed operator-(const Fixed& b) const;
+	Fixed operator+(const Fixed& b) const;
 
 	Fixed& operator++(); //No friend, miembro, debe ser miembro? es una forma adecuada de sobrecargar el operador?
 	Fixed operator++(int); //post-increment
 	Fixed& operator--(); //No friend, miembro, debe ser miembro? es una forma adecuada de sobrecargar el operador?
 	Fixed operator--(int); //post-decrement
 
-		
-	Fixed operator-(const Fixed& b);
-	Fixed operator+(const Fixed& b);
-	bool operator<(const Fixed& b); //ERROR, operadores de comparacion deberia retornar boleano o int
-	bool operator<=(const Fixed& b);
-	bool operator>( const Fixed& b);
-	bool operator>=(const Fixed& b);
-	bool operator==(const Fixed& b);
-	bool operator!=(const Fixed& b);
+	bool operator<(const Fixed& b) const;
+	bool operator<=(const Fixed& b) const;
+	bool operator>(const Fixed& b) const;
+	bool operator>=(const Fixed& b) const;
+	bool operator==(const Fixed& b) const;
+	bool operator!=(const Fixed& b) const;
+
+	static const Fixed& min(const Fixed& a, const Fixed& b);
+	static Fixed& min(Fixed& a, Fixed& b);
+	static const Fixed& max(const Fixed& a, const Fixed& b);
+	static Fixed& max(Fixed& a, Fixed& b);
+
 };
 
 

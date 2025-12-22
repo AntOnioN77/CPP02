@@ -74,94 +74,115 @@ std::ostream& operator<<(std::ostream& os, const Fixed& n)
 }
 
 //Aritmetic Operators:
-Fixed Fixed::operator+(const Fixed& b)
+Fixed Fixed::operator+(const Fixed& b) const
 {
-	Fixed sum;
-	sum.setRawBits(rawBits + b.getRawBits());
-	return sum;
+	Fixed result;
+	result.setRawBits(rawBits + b.getRawBits());
+	return result;
 }
 
-Fixed Fixed::operator-(const Fixed& b)
+Fixed Fixed::operator-(const Fixed& b) const
 {
-	Fixed mult;
-	mult.setRawBits(rawBits - b.getRawBits());
-	return mult;
+	Fixed result;
+	result.setRawBits(rawBits - b.getRawBits());
+	return result;
 }
 
-Fixed Fixed::operator*(const Fixed& b)
+Fixed Fixed::operator*(const Fixed& b) const
 {
-	Fixed mult;
+	Fixed result;
 
-	mult.setRawBits(((long)rawBits * b.getRawBits()) >> Fixed::fixed_point);
-	return mult;
+	result.setRawBits(((long)rawBits * b.getRawBits()) >> Fixed::fixed_point);
+	return result;
 }
 
-Fixed Fixed::operator/(const Fixed& b)
+Fixed Fixed::operator/(const Fixed& b) const
 {
-	Fixed div;
+	Fixed result;
 
-	div.setRawBits(((long)rawBits << Fixed::fixed_point) / b.getRawBits());
-	return div;
+	result.setRawBits(((long)rawBits << Fixed::fixed_point) / b.getRawBits());
+	return result;
 }
 
 //Comparison operators
-bool Fixed::operator<(const Fixed& a, const Fixed& b)
+bool Fixed::operator<(const Fixed& b) const
 {
-	return a.getRawBits() < b.getRawBits();
+	return rawBits < b.getRawBits();
 }
 
-bool Fixed::operator<=(const Fixed& a, const Fixed& b)
+bool Fixed::operator<=(const Fixed& b) const
 {
-	return a.getRawBits() <= b.getRawBits();
+	return rawBits <= b.getRawBits();
 }
 
-bool Fixed::operator>(const Fixed& a, const Fixed& b)
+bool Fixed::operator>(const Fixed& b) const
 {
-	return a.getRawBits() > b.getRawBits();
+	return rawBits > b.getRawBits();
 }
 
-bool Fixed::operator>=(const Fixed& a, const Fixed& b)
+bool Fixed::operator>=(const Fixed& b) const
 {
-	return a.getRawBits() >= b.getRawBits();
+	return rawBits >= b.getRawBits();
 }
 
-bool Fixed::operator==(const Fixed& a, const Fixed& b)
+bool Fixed::operator==(const Fixed& b) const
 {
-	return (a.getRawBits() == b.getRawBits());
+	return (rawBits == b.getRawBits());
 }
 
-bool Fixed::operator!=(const Fixed& a, const Fixed& b)
+bool Fixed::operator!=(const Fixed& b) const
 {
-	return a.getRawBits() != b.getRawBits();
+	return rawBits != b.getRawBits();
 }
 
 //increment operatotors
-Fixed Fixed::operator++(Fixed& fixed, int) //post-increment
+Fixed Fixed::operator++(int) //post-increment
 {
-    Fixed tmp(fixed);
-	fixed.rawBits++;
+    Fixed tmp(*this);
+	rawBits++;
 	return tmp;
 }
 
-Fixed& Fixed::operator++(Fixed& fixed) //pre-increment
+Fixed& Fixed::operator++() //pre-increment
 {
-	fixed.rawBits++;
-	return fixed;
+	rawBits++;
+	return *this;
 }
 
-Fixed Fixed::operator--(Fixed& fixed, int) //post-decrement
+Fixed Fixed::operator--(int) //post-decrement
 {
-	Fixed tmp(fixed);
-	fixed.rawBits--;
+	Fixed tmp(*this);
+	rawBits--;
 	return tmp;
 }
 
-Fixed& Fixed::operator--(Fixed& fixed) //pre-decrement
+Fixed& Fixed::operator--() //pre-decrement
 {
-	fixed.rawBits--;
-	return fixed;
+	rawBits--;
+	return *this;
 }
 
-
-
-
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+    if(a.rawBits >= b.rawBits)
+		return b;
+	return a;
+}
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+    if(a.rawBits >= b.rawBits)
+		return b;
+	return a;
+}
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+	if(a.rawBits <= b.rawBits)
+		return b;
+	return a;
+}
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+	if(a.rawBits <= b.rawBits)
+		return b;
+	return a;
+}
