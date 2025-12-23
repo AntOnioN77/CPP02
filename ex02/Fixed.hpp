@@ -11,7 +11,7 @@ class Fixed
 
 	public:
 	Fixed();
-	Fixed(const int raw);
+	Fixed(const int num);
 	Fixed(const float  num);
 	Fixed(const Fixed& src);
 	~Fixed();
